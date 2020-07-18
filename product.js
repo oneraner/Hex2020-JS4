@@ -1,21 +1,21 @@
-// // 分頁元件
-// Vue.component('pagination',{
-//     template:'#pagination',
-//     data(){
-//         return{
+// 分頁元件
+Vue.component('pagination',{
+    template:'#pagination',
+    data(){
+        return{
             
-//         };
-//     },
-//     props:{
-//         pages:{},
-//     },
-//     methods:{
-//         emitPages(item){
-//             this.$emit('emit-pages',item);
-//         },
+        };
+    },
+    props:{
+        pages:{},
+    },
+    methods:{
+        emitPages(item){
+            this.$emit('emit-pages',item);
+        },
 
-//     },
-// });
+    },
+});
 // new vue
 new Vue({
     el:'#app',
@@ -35,7 +35,8 @@ new Vue({
         },
     },
     created(){
-        this.user.token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        axios.defaults.headers.common.Authorization = `Bearer ${this.user.token}`;
+        // this.user.token = document.cookie.replace(/(?:(?:^|.*;\s*)cytoken\s*\=\s*([^;]*).*$)|^.*$/, "$1");
         // if(this.user.token === ''){
         //     window.location = 'login.html';
         // }
@@ -44,8 +45,6 @@ new Vue({
     methods:{
         getProducts(page = 1){
             const api = `https://course-ec-api.hexschool.io/api/${this.user.uuid}/admin/ec/products?page=${page}`;
-
-            axios.defaults.headers.common.Authorization = `Bearer ${this.user.token}`;
             axios.get(api).then((response) =>{
                 this.products = response.data.data;
                 this.pagination = response.data.meta.pagination;
