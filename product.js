@@ -35,8 +35,8 @@ new Vue({
         },
     },
     created(){
-        axios.defaults.headers.common.Authorization = `Bearer ${this.user.token}`;
         this.user.token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        axios.defaults.headers.common.Authorization = `Bearer ${this.user.token}`;
         if(this.user.token === ''){
             window.location = 'login.html';
         }
