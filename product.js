@@ -36,10 +36,10 @@ new Vue({
     },
     created(){
         axios.defaults.headers.common.Authorization = `Bearer ${this.user.token}`;
-        // this.user.token = document.cookie.replace(/(?:(?:^|.*;\s*)cytoken\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-        // if(this.user.token === ''){
-        //     window.location = 'login.html';
-        // }
+        this.user.token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        if(this.user.token === ''){
+            window.location = 'login.html';
+        }
         this.getProducts();
     },
     methods:{
