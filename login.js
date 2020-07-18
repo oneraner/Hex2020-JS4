@@ -12,13 +12,15 @@ new Vue ({
         signin(){
             const api = `${apiPath}auth/login`;
             axios.post(api, this.user).then((response) => {
-                console.log(response)
                 const token = response.data.token;
                 const expried = response.data.expried;
                 // 登入登出用釋例3，getData用釋例2 https://developer.mozilla.org/zh-CN/docs/Web/API/Document/cookie
-                document.cookie = `token=${token}; expires=${new Date(expried * 1000)}; path=/`;
+                document.cookie = `cytoken=${token}; expires=${new Date(expried * 1000)}; path=/`;
+                var saveCookie = document.cookie.replace(/(?:(?:^|.*;\s*)cytoken\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+                console.log(document.cookie);
+                console.log(saveCookie);
                 // BOM到產品頁面
-                window.location = 'products.html'
+                // window.location = 'products.html'
             }).catch((error) => {
                 console.log(error);
             });
