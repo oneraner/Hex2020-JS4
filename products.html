@@ -38,8 +38,8 @@
         <td>{{item.origin_price}}</td>
         <td>{{item.price}}</td>
         <td>
-            <span v-if="item.enabled">啟用</span>
-            <span v-else>未啟用</span>
+            <span v-if="item.enabled" class="text-success">啟用</span>
+            <span v-else class="text-danger">未啟用</span>
         </td>
         <td>
             <div class="btn-group">
@@ -50,9 +50,9 @@
         </tr>
     </tbody>
 </table>
-<!-- <pagination :pages="pagination" @emitPages="getProducts"></pagination> -->
+<pagination :pages="pagination" @emitPages="getProducts"></pagination>
 <!-- 分頁 -->
-<!-- <script type="text/template" id="pagination">
+<script type="text/template" id="pagination">
 <nav aria-label="Page navigation example">
     <ul class="pagination">
       <li class="page-item" :class="{'disabled': pages.current_page === 1}">
@@ -72,7 +72,7 @@
       </li>
     </ul>
   </nav>
-</script> -->
+</script>
 <!-- modal -->
 <!-- 例如個人資料更新，商品資料更新，核心概念是複製一份出來，改好了再更新回去，避免亂改或誤刪原始資料，在Vue先複製一份，選取顯示原始資料，再用v-model
 同步更新複製的資料跟輸入內容，最後再用確認按鈕把改好的覆蓋回去。 -->
